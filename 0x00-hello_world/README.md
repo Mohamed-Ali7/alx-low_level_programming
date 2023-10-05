@@ -25,7 +25,7 @@
 -   You are not allowed to use  `printf`
 -   Your program should end with the value  `0`
 
-**File `5-printf`:** C program that prints exactly  `with proper grammar, but the outcome is a piece of art,`, followed by a new line.
+**File `5-printf.c`:** C program that prints exactly  `with proper grammar, but the outcome is a piece of art,`, followed by a new line.
 
 -   Use the function  `printf`
 -   You are not allowed to use the function  `puts`
