@@ -2,7 +2,7 @@
 
 /**
  * main - Entry point
- * Return - return is (1) to make the program fail
+ * Return: is 1 (Fail)
  */
 
 int main(void)
