@@ -13,7 +13,7 @@ int main(void)
 
 	while (n <= 122 || x <= 90)
 	{
-		if(n <= 122)
+		if (n <= 122)
 		{
 			printf("%c", n);
 			n++;
