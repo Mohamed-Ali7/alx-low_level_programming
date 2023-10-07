@@ -29,8 +29,11 @@ int main(void)
 					putchar(' ');
 					putchar(n3);
 					putchar(n4);
-					putchar(',');
-					putchar(' ');
+					if (n1 != '9' || n2 != (n1 - 1) || n4 != '9')
+					{
+						putchar(',');
+						putchar(' ');
+					}
 					n4++;
 				}
 				n3++;
