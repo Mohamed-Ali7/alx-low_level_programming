@@ -1,13 +1,19 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
- * main - entry point
- * Return: is 0 (Success)
+ * print_alphabet - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-
-int main(void)
+void print_alphabet(void)
 {
-	print_alphabet();
-	return (0);
+	char c = 'a';
+	while (c <= 'z')
+	{
+		_putchar(c);
+		c++;
+	}
+	_putchar('\n');
 }
