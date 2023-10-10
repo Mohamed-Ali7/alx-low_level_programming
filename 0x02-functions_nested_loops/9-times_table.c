@@ -22,7 +22,7 @@ void times_table(void)
 				_putchar('0' + (tableNums / 10));
 			}
 			_putchar('0' + (tableNums % 10));
-			if (repeat != 9 || counter != 9)
+			if (repeat != 9)
 			{
 				_putchar(',');
 				_putchar(' ');
