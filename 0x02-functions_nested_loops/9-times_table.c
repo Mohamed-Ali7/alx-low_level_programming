@@ -7,7 +7,7 @@
  */
 void times_table(void)
 {
-	int counter = 1;
+	int counter = 0;
 	int tableNums = 0;
 	int repeat = 0;
 
@@ -22,11 +22,14 @@ void times_table(void)
 				_putchar('0' + (tableNums / 10));
 			}
 			_putchar('0' + (tableNums % 10));
-			_putchar(',');
-			_putchar(' ');
-			if ((tableNums + counter) < 10)
+			if (repeat != 9 || counter != 9)
 			{
+				_putchar(',');
 				_putchar(' ');
+				if ((tableNums + counter) < 10)
+				{
+					_putchar(' ');
+				}
 			}
 			repeat++;
 			tableNums += counter;
