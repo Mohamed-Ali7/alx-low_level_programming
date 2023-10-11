@@ -7,14 +7,14 @@
  */
 int main(void)
 {
-	int n1 = 1;
-	int n2 = 2;
-	int result = 0;
+	long n1 = 1;
+	long n2 = 2;
+	long result = 0;
 	int counter = 0;
 
 	while (counter < 50)
 	{
-		printf("%d", n1);
+		printf("%ld", n1);
 		if (counter != (50 - 1))
 		{
 			printf(", ");
