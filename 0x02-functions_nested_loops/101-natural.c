@@ -9,6 +9,7 @@ int main(void)
 {
 	int checker = 1;
 	int sum = 0;
+
 	while (checker < 1024)
 	{
 		if ((checker % 5) == 0 || (checker % 3) == 0)
@@ -20,4 +21,3 @@ int main(void)
 	printf("%d\n", sum);
 	return (0);
 }
-
