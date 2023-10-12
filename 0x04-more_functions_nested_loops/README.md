@@ -53,3 +53,8 @@
 -   Where  `size`  is the size of the square
 -   If  `size`  is  `0`  or less, the function should print only a new line
 -   Use the character  `#`  to print the square
+
+**File `9-fizz_buzz.c`:** C program that prints the numbers from  `1`  to  `100`, followed by a new line. But for multiples of three print  `Fizz`  instead of the number and for the multiples of five print  `Buzz`. For numbers which are multiples of both three and five print  `FizzBuzz`.
+
+-   Each number or word should be separated by a space
+-   You are allowed to use the standard library
