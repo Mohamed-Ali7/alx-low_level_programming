@@ -13,3 +13,8 @@
 **File `2-mul.c`:** Write a function that multiplies two integers.
 
 -   Prototype:  `int mul(int a, int b);`
+
+**File `3-print_numbers.c`:** Write a function that prints the numbers, from  `0`  to  `9`, followed by a new line.
+
+-   Prototype:  `void print_numbers(void);`
+-   You can only use  `_putchar`  twice in your code
