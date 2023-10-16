@@ -10,6 +10,7 @@ int _atoi(char *s)
 	int i = 0;
 	int minusChecker = 0;
 	unsigned int integers = 0;
+
 	while (s[i] != '\0')
 	{
 		if (s[i] == '-')
@@ -20,11 +21,11 @@ int _atoi(char *s)
 		{
 			integers *= 10;
 			integers += (s[i] - '0');
-		}else if (integers != 0 && !(s[i] >= 48 && s[i] <= 57))
+		}
+		else if (integers != 0 && !(s[i] >= 48 && s[i] <= 57))
 		{
 			break;
 		}
-		
 		i++;
 	}
 	if (minusChecker % 2 != 0)
