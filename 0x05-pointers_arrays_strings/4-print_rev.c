@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * print_rev -  prints a string, in reverse, followed by a new line.
  * @s: is the string to print reversed
@@ -14,10 +13,9 @@ void print_rev(char *s)
 	{
 		length++;
 	}
-
-	while (length >= 0)
+	while (length > 0)
 	{
-		_putchar(s[length]);
+		_putchar(s[length - 1]);
 		length--;
 	}
 	_putchar('\n');
