@@ -21,3 +21,7 @@ FYI: The standard library provides a similar function:  `puts`. Run  `man puts` 
 **File `4-print_rev.c`:** Write a function that prints a string, in reverse, followed by a new line.
 
 -   Prototype:  `void print_rev(char *s);`
+
+**File `5-rev_string.c`:** Write a function that reverses a string.
+
+-   Prototype:  `void rev_string(char *s);`
