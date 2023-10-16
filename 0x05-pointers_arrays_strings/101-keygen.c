@@ -11,7 +11,7 @@ int main(void)
 	int i = 0;
 	char c;
 
-	while (i < 100)
+	while (i < 500)
 	{
 		c = rand() % 128;
 		putchar(c);
