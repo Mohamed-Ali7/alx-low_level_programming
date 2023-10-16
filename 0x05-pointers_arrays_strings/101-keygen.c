@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 /**
  * main - Entry point
@@ -10,7 +11,8 @@ int main(void)
 {
 	int i = 0;
 	char c;
-
+	
+	srand(time(NULL));
 	while (i < 90)
 	{
 		c = (rand() % ( 128 - 48) + 48);
