@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * void puts_half - prints half of a string, followed by a new line.
  * @str: is the string to print
@@ -14,8 +14,15 @@ void puts_half(char *str)
 	{
 		length++;
 	}
-	
-	middle = length / 2;
+
+	if (length % 2 != 0)
+	{
+		middle = (length + 1) / 2;
+	}
+	else
+	{
+		middle = length / 2;
+	}
 
 	while (middle < length)
 	{
