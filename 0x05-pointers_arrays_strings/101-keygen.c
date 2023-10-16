@@ -15,7 +15,7 @@ int main(void)
 	srand(time(NULL));
 	while (i < 15)
 	{
-		c = (rand() % ( 128 - 48) + 48);
+		c = rand() % 128;
 		putchar(c);
 		i++;
 	}
