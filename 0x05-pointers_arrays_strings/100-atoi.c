@@ -9,7 +9,7 @@ int _atoi(char *s)
 {
 	int i = 0;
 	int minusChecker = 0;
-	int integers = 0;
+	unsigned int integers = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == '-')
