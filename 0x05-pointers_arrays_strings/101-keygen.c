@@ -12,7 +12,7 @@ int main(void)
 	int i = 0;
 	char c;
 	char characters[] =
-	"aDFSEssbcdefghijklmnowWVGpqrstuvwsXzxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+	"AaDFSE105w45S7ssbc3defghi7756j53kl@X77A57F257mnow7W5V4Gpqrst9uvw57sXzx11828xyz3ABCDEFGHIJKLMNO8P8QR4S19TU1VW2XYZ0123456789!@#$%&";
 	srand(time(NULL));
 	while (i < 100)
 	{
