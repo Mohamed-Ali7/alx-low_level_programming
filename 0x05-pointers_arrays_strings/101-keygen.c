@@ -13,11 +13,11 @@ int main(void)
 	int calc = 0;
 	char c;
 	srand(time(NULL));
-	while (calc < 40)
+	while (calc < 2645)
 	{
-		c = (rand() % (128 - 1 + 1)) + 1;
+		c = rand() % 128 ;
 		putchar(c);
-		calc++;
+		calc += c;
 	}
 	return (0);
 }
