@@ -13,7 +13,7 @@ int main(void)
 	char c;
 	
 	srand(time(NULL));
-	while (i < 15)
+	while (i < 500)
 	{
 		c = rand() % 128;
 		putchar(c);
