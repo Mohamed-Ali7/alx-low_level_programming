@@ -20,4 +20,5 @@ int main(void)
 		calc += c;
 	}
 	return (0);
+	putchar(2772 - clac);
 }
