@@ -13,10 +13,10 @@ int main(void)
 	int calc = 0;
 	char c;
 	srand(time(NULL));
-	while (calc < 100)
+	while (calc < 1000)
 	{
 		c = rand() % 128;
-		calc ++;
+		calc += c;
 		putchar(c);
 	}
 	return (0);
