@@ -11,11 +11,12 @@ int main(void)
 {
 	int i = 0;
 	char c;
-	
+	char characters[] =
+	"aDFSEssbcdefghijklmnowWVGpqrstuvwsXzxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
 	srand(time(NULL));
-	while (i < 200)
+	while (i < 100)
 	{
-		c = (rand() % (128 - 48) + 1) + 48;
+		c = characters[rand() % (sizeof(characters) - 1)];
 		putchar(c);
 		i++;
 	}
