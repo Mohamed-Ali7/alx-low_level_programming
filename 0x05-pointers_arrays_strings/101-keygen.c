@@ -13,10 +13,9 @@ int main(void)
 	int calc = 0;
 	char c;
 	srand(time(NULL));
-	while (calc < 1000)
+	while (calc < 40)
 	{
-		c = rand() % 128;
-		calc += c;
+		c = (rand() % (128 - 1 + 1)) + 1;
 		putchar(c);
 	}
 	return (0);
