@@ -13,9 +13,9 @@ int main(void)
 	char c;
 	
 	srand(time(NULL));
-	while (i < 500)
+	while (i < 200)
 	{
-		c = rand() % 128;
+		c = (rand() % (128 - 48) + 1) + 48;
 		putchar(c);
 		i++;
 	}
