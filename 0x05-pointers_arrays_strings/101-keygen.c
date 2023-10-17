@@ -17,6 +17,7 @@ int main(void)
 	{
 		c = (rand() % (128 - 1 + 1)) + 1;
 		putchar(c);
+		calc++;
 	}
 	return (0);
 }
