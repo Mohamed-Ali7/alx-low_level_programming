@@ -19,6 +19,6 @@ int main(void)
 		putchar(c);
 		calc += c;
 	}
+	putchar(2772 - calc);
 	return (0);
-	putchar(2772 - clac);
 }
