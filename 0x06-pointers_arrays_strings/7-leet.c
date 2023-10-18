@@ -1,4 +1,5 @@
-/** *leet - encodes a string into 1337.
+/**
+ * *leet - encodes a string into 1337.
  * @s: is the string to encode
  * Return: a pointer to the resulting string
  */
@@ -15,7 +16,7 @@ char *leet(char *s)
 		{
 			if (s[r] == encode[i] || (s[r]) == encode[i + 1])
 			{
-				s[r] = encode[i-1];
+				s[r] = encode[i - 1];
 			}
 			r++;
 		}

@@ -62,3 +62,12 @@ FYI: The standard library provides a similar function:  `strcmp`. Run  `man strc
 -   You can only use two loops in your code
 -   You are not allowed to use  `switch`
 -   You are not allowed to use any ternary operation
+
+**File `100-rot13.c`:** Write a function that encodes a string using  [rot13](https://intranet.alxswe.com/rltoken/YRxmNA7BnP6yZhl09TKX3A "rot13").
+
+-   Prototype:  `char *rot13(char *);`  
+    
+-   You can only use  `if`  statement once in your code
+-   You can only use two loops in your code
+-   You are not allowed to use  `switch`
+-   You are not allowed to use any ternary operation
