@@ -35,3 +35,7 @@ FYI: The standard library provides a similar function:  `strcmp`. Run  `man strc
 
 -   Prototype:  `void reverse_array(int *a, int n);`
 -   Where  `n`  is the number of elements of the array
+
+**File `5-string_toupper.c`:** Write a function that changes all lowercase letters of a string to uppercase.
+
+-   Prototype:  `char *string_toupper(char *s);`
