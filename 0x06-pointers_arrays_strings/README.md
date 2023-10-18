@@ -23,3 +23,10 @@ FYI: The standard library provides a similar function:  `strncat`. Run  `man str
 -   Your function should work exactly like  `strncpy`
 
 FYI: The standard library provides a similar function:  `strncpy`. Run  `man strncpy`  to learn more.
+
+**File `3-strcmp.c`:** Write a function that compares two strings.
+
+-   Prototype:  `int _strcmp(char *s1, char *s2);`
+-   Your function should work exactly like  `strcmp`
+
+FYI: The standard library provides a similar function:  `strcmp`. Run  `man strcmp`  to learn more.
