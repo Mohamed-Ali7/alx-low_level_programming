@@ -27,12 +27,12 @@ void print_buffer(char *b, int size)
 			{
 				printf(" ");
 			}
-			if (i + x < size)
+			if (i < size)
 			{
-				printf("%02x", b[i + x]);
-				if (b[i + x] >= 32 && b[i + x] <= 126)
+				printf("%02x", b[i]);
+				if (b[i] >= 32 && b[i] <= 126)
 				{
-					tmp[x] = b[i + x];
+					tmp[x] = b[i];
 				}
 				else
 				{
@@ -42,10 +42,10 @@ void print_buffer(char *b, int size)
 			else
 			{
 				printf("  ");
-				tmp[x] = ' ';
+				tmp[x] = '\0';
 			}
+			i++;
 		}
 		printf(" %s\n", tmp);
-		i += 10;
 	}
 }
