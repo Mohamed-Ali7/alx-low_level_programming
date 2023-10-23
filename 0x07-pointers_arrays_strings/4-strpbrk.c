@@ -3,7 +3,7 @@
 /**
  * *_strpbrk - searches a string for any of a set of bytes.
  * @s: Is the string the will search into.
- * @accept: Is the substring that will locates the first 
+ * @accept: Is the substring that will locates the first
  * occurrence of any of its  bytes in the string (s)
  *
  * Return: a pointer to the byte in s that matches one of the bytes in accept,
