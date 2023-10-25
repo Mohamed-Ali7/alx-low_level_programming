@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int _sqrt(int start, int end, int num);
 
 /**
@@ -8,7 +10,7 @@ int _sqrt(int start, int end, int num);
 
 int _sqrt_recursion(int n)
 {
-	return (_sqrt(1, n, n));
+	return (_sqrt(0, n, n));
 }
 
 /**
@@ -21,7 +23,7 @@ int _sqrt_recursion(int n)
 
 int _sqrt(int start, int end, int num)
 {
-	int mid = (end + start) / 2;
+	long mid = (end + start) / 2;
 
 	if (start > end)
 	{
@@ -32,7 +34,7 @@ int _sqrt(int start, int end, int num)
 	{
 		return (mid);
 	}
-	else if (mid * mid < num)
+	else if (mid * mid <= num)
 	{
 		return (_sqrt(mid + 1, end, num));
 	}
