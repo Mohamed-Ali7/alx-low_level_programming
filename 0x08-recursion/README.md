@@ -37,3 +37,15 @@ FYI: The standard library provides a different function:  `pow`. Run  `man pow` 
 -   If  `n`  does not have a natural square root, the function should return  `-1`
 
 FYI: The standard library provides a different function:  `sqrt`. Run  `man sqrt`  to learn more.
+
+**File - `5-sqrt_recursion.c`:** Write a function that returns the natural square root of a number.
+
+-   Prototype:  `int _sqrt_recursion(int n);`  
+    
+-   If  `n`  does not have a natural square root, the function should return  `-1`
+
+FYI: The standard library provides a different function:  `sqrt`. Run  `man sqrt`  to learn more.
+
+**File - `6-is_prime_number.c`:** Write a function that returns  `1`  if the input integer is a  [prime number](https://intranet.alxswe.com/rltoken/bjG_8Gu-_0rwbYA_tAv2Yw "prime number"), otherwise return  `0`.
+
+-   Prototype:  `int is_prime_number(int n);`
