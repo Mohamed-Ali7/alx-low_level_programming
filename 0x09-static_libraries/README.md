@@ -124,3 +124,4 @@ julien@ubuntu:~/0x09. Static Librairies$ ./quote
     - Kevin Mitnick
 julien@ubuntu:~/0x09. Static Librairies$ 
 ```
+

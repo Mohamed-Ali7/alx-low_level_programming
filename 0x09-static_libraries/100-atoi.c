@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 /**
  * _atoi - find digit numbers in a string and resturn them.
  * @s: is the string to search into
