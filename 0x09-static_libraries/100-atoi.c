@@ -3,7 +3,7 @@
  * @s: is the string to search into
  * Return: the digit numbers;
  */
-int _atoi(char *s)
+int atoi(char *s)
 {
 	int i = 0;
 	int minusChecker = 0;
