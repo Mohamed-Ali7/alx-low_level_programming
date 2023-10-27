@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 	int r;
 	int num1 = 0;
 	int num2 = 0;
+	int result = 1;
 
 	if (argc != 3)
 	{
@@ -24,6 +25,12 @@ int main(int argc, char *argv[])
 		r = 0;
 		while (argv[i][r] != '\0')
 		{
+			if (argv[i][r] == '-')
+			{
+				result *= -1;
+				r++;
+				continue;
+			}
 			if (i == 1)
 			{
 				num1 = (num1 * 10) + (argv[i][r] - 48);
@@ -35,7 +42,7 @@ int main(int argc, char *argv[])
 			r++;
 		}
 	}
-	printf("%d\n", num1 * num2);
+	printf("%d\n", num1 * num2 * result);
 	return (0);
 }
 
