@@ -83,6 +83,11 @@ char **strtow(char *str)
 		strArr[x] = malloc(sizeof(char) * (strLen + 1));
 		if (strArr[x] == NULL)
 		{
+			for (i = 0; i < x; i++)
+			{
+				free(strArr[i]);
+			}
+			free(strArr);
 			return (NULL);
 		}
 	}
