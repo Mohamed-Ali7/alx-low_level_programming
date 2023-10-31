@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 char *strFilter(char *s);
 /**
@@ -30,6 +31,10 @@ char **strtow(char *str)
 			arrSize++;
 		}
 	}
+	if (i == 0;)
+	{
+		return (NULL);
+	}
 	strArr = malloc(sizeof(char *) * arrSize);
 	if (strArr == NULL)
 	{
@@ -44,7 +49,7 @@ char **strtow(char *str)
 			r++;
 		}
 		r++;
-		strArr[i] =  malloc(sizeof(char) * (strLen + 1));
+		strArr[i] =  malloc(sizeof(char) * (strLen));
 		if (strArr[i] == NULL)
 		{
 			return (NULL);
