@@ -10,7 +10,7 @@ void initArr(char *str, char **strArr, int arrSize);
  * Return: A pointer to an array of strings (words)
  */
 
-char **strtow (char *str)
+char **strtow(char *str)
 {
 	char **strArr;
 	int arrSize = 1;
@@ -43,11 +43,11 @@ char **strtow (char *str)
 			arrSize++;
 		}
 	}
-	if (arrSize == 1 && str[0] == ' ')
+	if (arrSize == 1)
 	{
 		return (NULL);
 	}
-	strArr = malloc(sizeof(char *) * arrSize);
+	strArr = malloc(sizeof(char *) * (arrSize + 1));
 	if (strArr == NULL)
 	{
 		return (NULL);
@@ -57,7 +57,7 @@ char **strtow (char *str)
 	for (x = 0; x < arrSize; x++)
 	{
 		strLen = 0;
-		while(str[i] != '\0')
+		while (str[i] != '\0')
 		{
 			cur = str[i];
 			next = str[i + 1];
@@ -93,7 +93,9 @@ char **strtow (char *str)
 /**
  * **initArr - Initialize the passed array of strings
  * @str: Is the string which will be used to init the array
- * Return: A pointer to the initialized array
+ * @strArr: Is the String to initialize with proper data
+ * @arrSize: Is the size of the  array strArr
+ * Return: void
  */
 
 void initArr(char *str, char **strArr, int arrSize)
@@ -106,35 +108,34 @@ void initArr(char *str, char **strArr, int arrSize)
 	char next;
 
 	for (x = 0; x < arrSize; x++)
-        {
-                j = 0;
-                while(str[i] != '\0')
-                {
-                        cur = str[i];
-                        next = str[i + 1];
-                        if ((cur <= 32 || cur >= 127) && (!(next > 32) || !(next < 127)))
-                        {
-                                i++;
-                                continue;
-                        }
-                        else if ((str[0] <= 32 || str[0] >= 127) && r == 0)
-                        {
-                                i++;
-                                r++;
-                                continue;
-                        }
-                        if (str[i] == ' ')
-                        {
-                                i++;
+	{
+		j = 0;
+		while (str[i] != '\0')
+		{
+			cur = str[i];
+			next = str[i + 1];
+			if ((cur <= 32 || cur >= 127) && (!(next > 32) || !(next < 127)))
+			{
+				i++;
+				continue;
+			}
+			else if ((str[0] <= 32 || str[0] >= 127) && r == 0)
+			{
+				i++;
+				r++;
+				continue;
+			}
+			if (str[i] == ' ')
+			{
+				i++;
 				j++;
-                                break;
-                        }
+				break;
+			}
 			strArr[x][j] = str[i];
 			j++;
-                        i++;
-                }
+			i++;
+		}
 		strArr[x][j] = '\0';
-        }
+	}
 	strArr[x] = NULL;
 }
-
