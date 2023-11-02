@@ -28,7 +28,12 @@ unsigned long _atoi(char *s)
 		}
 		else
 		{
-			printf("Error\n");
+			_putchar('E');
+			_putchar('r');
+			_putchar('r');
+			_putchar('o');
+			_putchar('r');
+			_putchar('\n');
 			exit(98);
 		}
 		i++;
@@ -49,18 +54,21 @@ int main(int argc, char *argv[])
 {
 	char *num1;
 	char *num2;
-	unsigned long result;
 
 	if (argc != 3)
 	{
-		printf("Error\n");
+		_putchar('E');
+		_putchar('r');
+		_putchar('r');
+		_putchar('o');
+		_putchar('r');
+		_putchar('\n');
 		exit(98);
 	}
 	num1 = argv[1];
 	num2 = argv[2];
 
-	result = _atoi(num1) * _atoi(num2);
-	print_number(result);
+	print_number(_atoi(num1) * _atoi(num2));
 	return (0);
 }
 
