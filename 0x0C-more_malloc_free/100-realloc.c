@@ -41,6 +41,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		rst[i] = ((char *)ptr)[i];
 		i++;
 	}
+	free(ptr);
 	return (rst);
 
 }
