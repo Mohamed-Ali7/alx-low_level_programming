@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include "main.h"
 
-void print_number(unsigned long n);
-
 /**
  * _atoi - find digit numbers in a string and resturn them.
  * @s: is the string to search into
@@ -21,19 +19,14 @@ unsigned long _atoi(char *s)
 		{
 			minusChecker++;
 		}
-		if (s[i] >= 48 && s[i] <= 57)
+		else if (s[i] >= 48 && s[i] <= 57)
 		{
 			integers *= 10;
 			integers += (s[i] - '0');
 		}
 		else
 		{
-			_putchar('E');
-			_putchar('r');
-			_putchar('r');
-			_putchar('o');
-			_putchar('r');
-			_putchar('\n');
+			printf("Error\n");
 			exit(98);
 		}
 		i++;
@@ -57,45 +50,12 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		_putchar('E');
-		_putchar('r');
-		_putchar('r');
-		_putchar('o');
-		_putchar('r');
-		_putchar('\n');
+		printf("Error\n");
 		exit(98);
 	}
 	num1 = argv[1];
 	num2 = argv[2];
 
-	print_number(_atoi(num1) * _atoi(num2));
+	printf("%ld\n", _atoi(num1) * _atoi(num2));
 	return (0);
-}
-
-/**
- * print_number - prints an integer
- * @n: is the number to print
- *
- * Return: void
- */
-
-void print_number(unsigned long n)
-{
-	unsigned long tmp = n;
-	unsigned long divider = 1;
-
-	while (n != 0)
-	{
-		n /= 10;
-		if (n != 0)
-		{
-			divider *= 10;
-		}
-	}
-	while (divider >= 1)
-	{
-		_putchar('0' + ((tmp / divider) % 10));
-		divider /= 10;
-	}
-	_putchar('\n');
 }
