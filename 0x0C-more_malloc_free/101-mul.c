@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include "main.h"
 
-void print_number(int n);
+void print_number(unsigned long n);
 
 /**
  * _atoi - find digit numbers in a string and resturn them.
  * @s: is the string to search into
  * Return: the digit numbers;
  */
-int _atoi(char *s)
+unsigned long _atoi(char *s)
 {
 	int i = 0;
 	int minusChecker = 0;
-	unsigned int integers = 0;
+	unsigned long integers = 0;
 
 	while (s[i] != '\0')
 	{
@@ -71,16 +71,11 @@ int main(int argc, char *argv[])
  * Return: void
  */
 
-void print_number(int n)
+void print_number(unsigned long n)
 {
-	unsigned int tmp = n;
-	unsigned int divider = 1;
+	unsigned long tmp = n;
+	unsigned long divider = 1;
 
-	if (n < 0)
-	{
-		tmp = (n * -1);
-		_putchar('-');
-	}
 	while (n != 0)
 	{
 		n /= 10;
