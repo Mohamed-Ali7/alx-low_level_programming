@@ -1,7 +1,20 @@
 #include "main.h"
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+
+/**
+ * _strlen - Calculates the length of a string
+ * @s: Is the string to calcualte its length
+ * Return: The length of string (s)
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (*s++)
+		i++;
+	return (i);
+}
 
 /**
  * _multiply - multiply two string numbers
@@ -14,8 +27,8 @@ char *_multiply(char *s1, char *s2)
 	char *rst;
 	int s1Len, s2Len, b, c, j, x;
 
-	s1Len = strlen(s1);
-	s2Len = strlen(s2);
+	s1Len = _strlen(s1);
+	s2Len = _strlen(s2);
 	j = x = s1Len + s2Len;
 	rst = malloc(s1Len + s2Len);
 	if (rst == NULL)
@@ -35,7 +48,7 @@ char *_multiply(char *s1, char *s2)
 		}
 		j = s1[s1Len] - '0';
 		c = 0;
-		for (s2Len = strlen(s2) - 1; s2Len >= 0; s2Len--)
+		for (s2Len = _strlen(s2) - 1; s2Len >= 0; s2Len--)
 		{
 			if (!(s2[s2Len] >= 48 && s2[s2Len] <= 57))
 			{
@@ -75,8 +88,8 @@ int main(int argc, char **argv)
 		printf("Error\n"), exit(98);
 	}
 
-	arg1Len = strlen(argv[1]);
-	arg2Len = strlen(argv[2]);
+	arg1Len = _strlen(argv[1]);
+	arg2Len = _strlen(argv[2]);
 	x = arg1Len + arg2Len;
 	result = _multiply(argv[1], argv[2]);
 	j = 0;
