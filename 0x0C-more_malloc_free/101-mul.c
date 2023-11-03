@@ -83,12 +83,12 @@ int main(int argc, char **argv)
 
 char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 {
-	int resultLen = mainNLen + subNLen;
-	char *result = malloc(mainNLen + subNLen);
+	int resultLen = mainNLen + subNLen + 1;
+	char *result = malloc(resultLen);
 	int i = resultLen;
 	int mulReminder, sumReminder;
 	int r, tmpR, numR;
-	
+
 	if (result == NULL)
 	{
 		printf("Error\n");
@@ -99,6 +99,9 @@ char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 		result[i - 1] = '0';
 		i--;
 	}
+
+	result[resultLen - 1] = '\0';
+
 	for (i = subNLen - 1; i >= 0; i--)
 	{
 		mulReminder = 0;
