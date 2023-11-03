@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int _strlen(char *s);
-char *multiply(char *s1, char *s2);
+char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen);
 /**
  * main - multiply two big number strings
  * @argc: the number of arguments
@@ -11,7 +11,7 @@ char *multiply(char *s1, char *s2);
  *
  * Return: Always 0 on success.
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	char *result, *num1, *num2;
 	int resultLen, num1Len, num2Len;
@@ -48,32 +48,25 @@ int main(int argc, char *argv[])
 	}
 	num1Len = _strlen(num1);
 	num2Len = _strlen(num2);
-	if (num1Len == 0 || num2Len == 0)
-	{
-		printf("Error\n");
-		exit(98);
-	}
 	resultLen = num1Len + num2Len;
 	if (num1Len > num2Len)
 	{
-		result = multiply(num1, num2);
+		result = multiply(num1, num2, num1Len, num2Len);
 	}
 	else
 	{
-		result = multiply(num1, num2);
+		result = multiply(num2, num1, num2Len, num1Len);
 	}
 	i = 0;
-	r = 0;
-	while (i < resultLen)
+	while (result[i] == '0')
 	{
-		if (result[i])
-			r = 1;
-		if (r)
-			_putchar(result[i] + '0');
 		i++;
 	}
-	if (!r)
-		_putchar('0');
+	while (i < resultLen)
+	{
+		_putchar(result[i]);
+		i++;
+	}
 	_putchar('\n');
 	free(result);
 	return (0);
@@ -81,43 +74,51 @@ int main(int argc, char *argv[])
 
 /**
  * multiply - Receives two string numbers and multiply them
- * @s1: Is the main number that the sub number will be multiplied to
- * @s2: Is the sub number that will be multiplied to the main number
+ * @mainNum: Is the main number that the sub number will be multiplied to
+ * @subNum: Is the sub number that will be multiplied to the main number
+ * @mainNLen: Is the length of the main number
+ * @subNLen: Is the length of the sub number
  * Return: A pointer to a string that contains
  * the result of multipling the two string numbers
  */
 
-char *multiply(char *s1, char *s2)
+char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 {
-	char *r;
-	int l1, l2, a, b, c, x;
+	int resultLen = mainNLen + subNLen;
+	char *result = malloc(sizeof(char) * resultLen);
+	int i = resultLen;
+	int r, tmpR, numR;
 
-	l1 = _strlen(s1);
-	l2 = _strlen(s2);
-	r = malloc(a = x = l1 + l2);
-	if (!r)
-		printf("Error\n"), exit(98);
-	while (a--)
-		r[a] = 0;
-
-	for (l1--; l1 >= 0; l1--)
+	if (result == NULL)
 	{
-		a = s1[l1] - '0';
-		c = 0;
-
-		for (l2 = _strlen(s2) - 1; l2 >= 0; l2--)
-		{
-			b = s2[l2] - '0';
-
-			c += r[l1 + l2 + 1] + (a * b);
-			r[l1 + l2 + 1] = c % 10;
-
-			c /= 10;
-		}
-		if (c)
-			r[l1 + l2 + 1] += c;
+		printf("Error\n");
+		exit(98);
 	}
-	return (r);
+	while (i >= 1)
+	{
+		result[i - 1] = '0';
+		i--;
+	}
+
+	for (i = subNLen - 1; i >= 0; i--)
+	{
+		numR = 0;
+		for (r = mainNLen - 1; r >= 0; r--)
+		{
+			tmpR = (subNum[i] - 48) * (mainNum[r] - 48);
+
+			numR += (result[i + r + 1] - 48) + tmpR;
+			result[i + r + 1] = (numR % 10) + 48;
+
+			numR /= 10;
+			if (r == 0 && numR > 0)
+			{
+
+				result[i + r] = numR + 48;
+			}
+		}
+	}
+	return (result);
 }
 
 /**
