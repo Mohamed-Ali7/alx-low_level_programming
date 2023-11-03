@@ -14,7 +14,7 @@ char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen);
 int main(int argc, char **argv)
 {
 	char *result, *num1, *num2;
-	int num1Len, num2Len;
+	int resultLen, num1Len, num2Len;
 	int i = 0;
 	int r = 0;
 
@@ -48,6 +48,7 @@ int main(int argc, char **argv)
 	}
 	num1Len = _strlen(num1);
 	num2Len = _strlen(num2);
+	resultLen = num1Len + num2Len;
 	if (num1Len > num2Len)
 	{
 		result = multiply(num1, num2, num1Len, num2Len);
@@ -61,7 +62,7 @@ int main(int argc, char **argv)
 	{
 		i++;
 	}
-	while (result[i] != '\0')
+	while (i < resultLen)
 	{
 		_putchar(result[i]);
 		i++;
@@ -100,7 +101,6 @@ char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 		i--;
 	}
 
-	result[resultLen - 1] = '\0';
 	for (i = subNLen - 1; i >= 0; i--)
 	{
 		mulReminder = 0;
