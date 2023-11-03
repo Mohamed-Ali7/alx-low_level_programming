@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int _strlen(char *s);
-char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen);
+char *multiply(char *s1, char *s2);
 /**
  * main - multiply two big number strings
  * @argc: the number of arguments
@@ -56,22 +56,24 @@ int main(int argc, char *argv[])
 	resultLen = num1Len + num2Len;
 	if (num1Len > num2Len)
 	{
-		result = multiply(num1, num2, num1Len, num2Len);
+		result = multiply(num1, num2);
 	}
 	else
 	{
-		result = multiply(num2, num1, num2Len, num1Len);
+		result = multiply(num1, num2);
 	}
 	i = 0;
-	while (result[i] == '0')
-	{
-		i++;
-	}
+	r = 0;
 	while (i < resultLen)
 	{
-		_putchar(result[i]);
+		if (result[i])
+			r = 1;
+		if (r)
+			_putchar(result[i] + '0');
 		i++;
 	}
+	if (!r)
+		_putchar('0');
 	_putchar('\n');
 	free(result);
 	return (0);
@@ -79,54 +81,43 @@ int main(int argc, char *argv[])
 
 /**
  * multiply - Receives two string numbers and multiply them
- * @mainNum: Is the main number that the sub number will be multiplied to
- * @subNum: Is the sub number that will be multiplied to the main number
- * @mainNLen: Is the length of the main number
- * @subNLen: Is the length of the sub number
+ * @s1: Is the main number that the sub number will be multiplied to
+ * @s2: Is the sub number that will be multiplied to the main number
  * Return: A pointer to a string that contains
  * the result of multipling the two string numbers
  */
 
-char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
+char *multiply(char *s1, char *s2)
 {
-	int resultLen = mainNLen + subNLen;
-	char *result = malloc(resultLen);
-	int i = resultLen;
-	int mulReminder, sumReminder;
-	int r, tmpR, numR;
+	char *r;
+	int l1, l2, a, b, c, x;
 
-	if (result == NULL)
-	{
-		printf("Error\n");
-		exit(98);
-	}
-	while (i >= 1)
-	{
-		result[i - 1] = '0';
-		i--;
-	}
+	l1 = _strlen(s1);
+	l2 = _strlen(s2);
+	r = malloc(a = x = l1 + l2);
+	if (!r)
+		printf("Error\n"), exit(98);
+	while (a--)
+		r[a] = 0;
 
-	for (i = subNLen - 1; i >= 0; i--)
+	for (l1--; l1 >= 0; l1--)
 	{
-		mulReminder = 0;
-		sumReminder = 0;
-		for (r = mainNLen - 1; r >= 0; r--)
+		a = s1[l1] - '0';
+		c = 0;
+
+		for (l2 = _strlen(s2) - 1; l2 >= 0; l2--)
 		{
-			tmpR = (subNum[i] - 48) * (mainNum[r] - 48) + mulReminder;
+			b = s2[l2] - '0';
 
-			numR = (result[i + r + 1] - 48) + (tmpR % 10);
-			result[i + r + 1] = ((numR + sumReminder) % 10) + 48;
+			c += r[l1 + l2 + 1] + (a * b);
+			r[l1 + l2 + 1] = c % 10;
 
-			sumReminder = (numR + sumReminder) / 10;
-			mulReminder = tmpR / 10;
-			if (r == 0 && (mulReminder > 0 || sumReminder > 0))
-			{
-
-				result[i + r] = (mulReminder + sumReminder) + 48;
-			}
+			c /= 10;
 		}
+		if (c)
+			r[l1 + l2 + 1] += c;
 	}
-	return (result);
+	return (r);
 }
 
 /**
