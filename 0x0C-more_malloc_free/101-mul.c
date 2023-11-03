@@ -100,7 +100,7 @@ char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 		i--;
 	}
 
-	result[resultLen - 1] = '\0'
+	result[resultLen - 1] = '\0';
 	for (i = subNLen - 1; i >= 0; i--)
 	{
 		mulReminder = 0;
