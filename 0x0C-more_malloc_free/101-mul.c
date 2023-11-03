@@ -62,6 +62,13 @@ int main(int argc, char **argv)
 	{
 		i++;
 	}
+
+	if (i == resultLen)
+	{
+		_putchar('0');
+		_putchar('\n');
+		return (0);
+	}
 	while (i < resultLen)
 	{
 		_putchar(result[i]);
@@ -87,7 +94,7 @@ char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 	int resultLen = mainNLen + subNLen;
 	char *result = malloc(sizeof(char) * resultLen);
 	int i = resultLen;
-	int r, tmpR, numR;
+	int r, tmpR, numR, sumReminder, mulReminder;
 
 	if (result == NULL)
 	{
@@ -102,22 +109,25 @@ char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 
 	for (i = subNLen - 1; i >= 0; i--)
 	{
-		numR = 0;
+		mulReminder = 0;
+		sumReminder = 0;
 		for (r = mainNLen - 1; r >= 0; r--)
 		{
-			tmpR = (subNum[i] - 48) * (mainNum[r] - 48);
+			tmpR = (subNum[i] - 48) * (mainNum[r] - 48) + mulReminder;
 
-			numR += (result[i + r + 1] - 48) + tmpR;
-			result[i + r + 1] = (numR % 10) + 48;
+			numR = (result[i + r + 1] - 48) + (tmpR % 10);
+			result[i + r + 1] = ((numR + sumReminder) % 10) + 48;
 
-			numR /= 10;
-			if (r == 0 && numR > 0)
+			sumReminder = (numR + sumReminder) / 10;
+			mulReminder = tmpR / 10;
+			if (r == 0 && (mulReminder > 0 || sumReminder > 0))
 			{
 
-				result[i + r] = numR + 48;
+				result[i + r] = (mulReminder + sumReminder) + 48;
 			}
 		}
 	}
+
 	return (result);
 }
 
