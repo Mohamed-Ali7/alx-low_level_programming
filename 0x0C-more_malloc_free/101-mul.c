@@ -1,98 +1,101 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
-
-void print_number(unsigned long n);
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 /**
- * _atoi - find digit numbers in a string and resturn them.
- * @s: is the string to search into
- * Return: the digit numbers;
+ * _multiply - multiply two string numbers
+ * @s1: the first number
+ * @s2: the second number
+ * Return: The result of multipling two numbers
  */
-unsigned long _atoi(char *s)
+char *_multiply(char *s1, char *s2)
 {
-	int i = 0;
-	unsigned long integers = 0;
+	char *rst;
+	int s1Len, s2Len, b, c, j, x;
 
-	while (s[i] != '\0')
+	s1Len = strlen(s1);
+	s2Len = strlen(s2);
+	j = x = s1Len + s2Len;
+	rst = malloc(s1Len + s2Len);
+	if (rst == NULL)
 	{
-		if (s[i] == '-' && i == 0)
-		{
-			i++;
-			continue;
-		}
-		else if (s[i] >= 48 && s[i] <= 57)
-		{
-			integers *= 10;
-			integers += (s[i] - '0');
-		}
-		else
-		{
-			printf("Error\n");
-			exit(98);
-		}
-		i++;
+		printf("Error\n");
+		exit(98);
 	}
-	return (integers);
+	while (j >= 0)
+		rst[j--] = 0;
+
+	for (s1Len--; s1Len >= 0; s1Len--)
+	{
+		if (!(s1[s1Len] >= 48 && s1[s1Len] <= 57))
+		{
+			free(rst);
+			printf("Error\n"), exit(98);
+		}
+		j = s1[s1Len] - '0';
+		c = 0;
+		for (s2Len = strlen(s2) - 1; s2Len >= 0; s2Len--)
+		{
+			if (!(s2[s2Len] >= 48 && s2[s2Len] <= 57))
+			{
+				free(rst);
+				printf("Error\n"), exit(98);
+			}
+			b = s2[s2Len] - '0';
+			c += rst[s1Len + s2Len + 1] + (j * b);
+			rst[s1Len + s2Len + 1] = c % 10;
+			c /= 10;
+		}
+		if (c)
+			rst[s1Len + s2Len + 1] += c;
+	}
+	return (rst);
 }
+
+
 /**
  * main - Entry point
  * @argc: The number of command line arguments
  * @argv: An array containing the program command line arguments
  * Return: 0
  */
-int main(int argc, char *argv[])
+
+int main(int argc, char **argv)
 {
-	char *num1;
-	char *num2;
-	unsigned long result;
+	char *result;
+	int j;
+	int i;
+	int x;
+	int arg1Len;
+	int arg2Len;
 
 	if (argc != 3)
 	{
-		printf("Error\n");
-		exit(98);
+		printf("Error\n"), exit(98);
 	}
 
-	num1 = argv[1];
-	num2 = argv[2];
-
-	result = _atoi(num1) * _atoi(num2);
-	if(num1[0] == '-' && num2[0] != '-')
+	arg1Len = strlen(argv[1]);
+	arg2Len = strlen(argv[2]);
+	x = arg1Len + arg2Len;
+	result = _multiply(argv[1], argv[2]);
+	j = 0;
+	for (i = 0; i < x; i++)
 	{
-		_putchar('-');
-	}
-	if (num1[0] != '-' && num2[0] == '-')
-	{
-		_putchar('-');
-	}
-	print_number(result);
-	return (0);
-}
-
-/**
- * print_number - prints an integer
- * @n: is the number to print
- *
- * Return: void
- */
-
-void print_number(unsigned long n)
-{
-	unsigned long tmp = n;
-	unsigned long divider = 1;
-
-	while (n != 0)
-	{
-		n /= 10;
-		if (n != 0)
+		if (result[i] != '\0')
 		{
-			divider *= 10;
+			j = 1;
+		}
+		if (j == 1)
+		{
+			_putchar(result[i] + '0');
 		}
 	}
-	while (divider >= 1)
+	if (j == 0)
 	{
-		_putchar('0' + ((tmp / divider) % 10));
-		divider /= 10;
+		_putchar('0');
 	}
 	_putchar('\n');
+	free(result);
+	return (0);
 }
