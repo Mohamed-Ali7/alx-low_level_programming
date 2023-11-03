@@ -88,7 +88,12 @@ char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 	int i = resultLen;
 	int mulReminder, sumReminder;
 	int r, tmpR, numR;
-
+	
+	if (result == NULL)
+	{
+		printf("Error\n");
+		exit(98);
+	}
 	while (i >= 1)
 	{
 		result[i - 1] = '0';
