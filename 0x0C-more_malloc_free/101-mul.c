@@ -48,6 +48,11 @@ int main(int argc, char **argv)
 	}
 	num1Len = _strlen(num1);
 	num2Len = _strlen(num2);
+	if (num1Len == 0 || num2Len == 0)
+	{
+		printf("Error\n");
+		exit(98);
+	}
 	resultLen = num1Len + num2Len;
 	if (num1Len > num2Len)
 	{
