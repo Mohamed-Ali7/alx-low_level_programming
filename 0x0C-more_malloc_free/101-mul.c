@@ -82,16 +82,16 @@ int main(int argc, char **argv)
 	j = 0;
 	for (i = 0; i < x; i++)
 	{
-		if (result[i] != '\0')
+		if (result[i])
 		{
 			j = 1;
 		}
-		if (j == 1)
+		if (j)
 		{
 			_putchar(result[i] + '0');
 		}
 	}
-	if (j == 0)
+	if (!j)
 	{
 		_putchar('0');
 	}
