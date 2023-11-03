@@ -11,7 +11,7 @@ char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen);
  *
  * Return: Always 0 on success.
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
 	char *result, *num1, *num2;
 	int resultLen, num1Len, num2Len;
@@ -48,6 +48,11 @@ int main(int argc, char **argv)
 	}
 	num1Len = _strlen(num1);
 	num2Len = _strlen(num2);
+	if (num1Len == 0 || num2Len == 0)
+	{
+		printf("Error\n");
+		exit(98);
+	}
 	resultLen = num1Len + num2Len;
 	if (num1Len > num2Len)
 	{
@@ -84,7 +89,7 @@ int main(int argc, char **argv)
 
 char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 {
-	int resultLen = mainNLen + subNLen + 1;
+	int resultLen = mainNLen + subNLen;
 	char *result = malloc(resultLen);
 	int i = resultLen;
 	int mulReminder, sumReminder;
