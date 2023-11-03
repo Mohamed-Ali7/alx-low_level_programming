@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 	i = 0;
 	while (result[i] == '0')
 	{
-		i++
+		i++;
 	}
 	while (result[i] != '\0')
 	{
