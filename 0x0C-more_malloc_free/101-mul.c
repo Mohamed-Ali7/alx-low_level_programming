@@ -1,8 +1,8 @@
 #include "main.h"
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
+int _strlen(char *s);
 char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen);
 /**
  * main - multiply two big number strings
@@ -46,8 +46,8 @@ int main(int argc, char **argv)
 			r++;
 		}
 	}
-	num1Len = strlen(num1);
-	num2Len = strlen(num2);
+	num1Len = _strlen(num1);
+	num2Len = _strlen(num2);
 	if (num1Len > num2Len)
 	{
 		result = multiply(num1, num2, num1Len, num2Len);
@@ -115,4 +115,20 @@ char *multiply(char *mainNum, char *subNum, int mainNLen, int subNLen)
 		}
 	}
 	return (result);
+}
+
+/**
+ * _strlen - cout length of the received string
+ * @s: is the string to return its length
+ * Return: the length of the received string
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
