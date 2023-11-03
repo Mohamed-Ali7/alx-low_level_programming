@@ -1,11 +1,23 @@
 #include "main.h"
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
+/**
+ * _isdigit - checks if character is digit
+ * @c: the character to check
+ *
+ * Return: 1 if digit, 0 otherwise
+ */
+int _isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
 
 /**
- * _strlen - Calculates the length of a string
- * @s: Is the string to calcualte its length
- * Return: The length of string (s)
+ * _strlen - returns the length of a string
+ * @s: the string whose length to check
+ *
+ * Return: integer length of string
  */
 int _strlen(char *s)
 {
@@ -17,98 +29,86 @@ int _strlen(char *s)
 }
 
 /**
- * _multiply - multiply two string numbers
- * @s1: the first number
- * @s2: the second number
- * Return: The result of multipling two numbers
+ * big_multiply - multiply two big number strings
+ * @s1: the first big number string
+ * @s2: the second big number string
+ *
+ * Return: the product big number string
  */
-char *_multiply(char *s1, char *s2)
+char *big_multiply(char *s1, char *s2)
 {
-	char *rst;
-	int s1Len, s2Len, b, c, j, x;
+	char *r;
+	int l1, l2, a, b, c, x;
 
-	s1Len = _strlen(s1);
-	s2Len = _strlen(s2);
-	j = x = s1Len + s2Len;
-	rst = malloc(s1Len + s2Len);
-	if (rst == NULL)
-	{
-		printf("Error\n");
-		exit(98);
-	}
-	while (j >= 0)
-		rst[j--] = 0;
+	l1 = _strlen(s1);
+	l2 = _strlen(s2);
+	r = malloc(a = x = l1 + l2);
+	if (!r)
+		printf("Error\n"), exit(98);
+	while (a--)
+		r[a] = 0;
 
-	for (s1Len--; s1Len >= 0; s1Len--)
+	for (l1--; l1 >= 0; l1--)
 	{
-		if (!(s1[s1Len] >= 48 && s1[s1Len] <= 57))
+		if (!_isdigit(s1[l1]))
 		{
-			free(rst);
+			free(r);
 			printf("Error\n"), exit(98);
 		}
-		j = s1[s1Len] - '0';
+		a = s1[l1] - '0';
 		c = 0;
-		for (s2Len = _strlen(s2) - 1; s2Len >= 0; s2Len--)
+
+		for (l2 = _strlen(s2) - 1; l2 >= 0; l2--)
 		{
-			if (!(s2[s2Len] >= 48 && s2[s2Len] <= 57))
+			if (!_isdigit(s2[l2]))
 			{
-				free(rst);
+				free(r);
 				printf("Error\n"), exit(98);
 			}
-			b = s2[s2Len] - '0';
-			c += rst[s1Len + s2Len + 1] + (j * b);
-			rst[s1Len + s2Len + 1] = c % 10;
+			b = s2[l2] - '0';
+
+			c += r[l1 + l2 + 1] + (a * b);
+			r[l1 + l2 + 1] = c % 10;
+
 			c /= 10;
 		}
 		if (c)
-			rst[s1Len + s2Len + 1] += c;
+			r[l1 + l2 + 1] += c;
 	}
-	return (rst);
+	return (r);
 }
 
 
 /**
- * main - Entry point
- * @argc: The number of command line arguments
- * @argv: An array containing the program command line arguments
- * Return: 0
+ * main - multiply two big number strings
+ * @argc: the number of arguments
+ * @argv: the argument vector
+ *
+ * Return: Always 0 on success.
  */
-
 int main(int argc, char **argv)
 {
-	char *result;
-	int j;
-	int i;
-	int x;
-	int arg1Len;
-	int arg2Len;
+	char *r;
+	int a, c, x;
 
 	if (argc != 3)
-	{
 		printf("Error\n"), exit(98);
-	}
 
-	arg1Len = _strlen(argv[1]);
-	arg2Len = _strlen(argv[2]);
-	x = arg1Len + arg2Len;
-	result = _multiply(argv[1], argv[2]);
-	j = 0;
-	for (i = 0; i < x; i++)
+	x = _strlen(argv[1]) + _strlen(argv[2]);
+	r = big_multiply(argv[1], argv[2]);
+	c = 0;
+	a = 0;
+	while (c < x)
 	{
-		if (result[i])
-		{
-			j = 1;
-		}
-		if (j)
-		{
-			_putchar(result[i] + '0');
-		}
+		if (r[c])
+			a = 1;
+		if (a)
+			_putchar(r[c] + '0');
+		c++;
 	}
-	if (!j)
-	{
+	if (!a)
 		_putchar('0');
-	}
 	_putchar('\n');
-	free(result);
+	free(r);
 	return (0);
 }
