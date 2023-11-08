@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(98);
 	}
+
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[3]);
 	calc = get_op_func(argv[2]);
