@@ -53,8 +53,13 @@ void print_all(const char * const format, ...)
 	va_end(listPtr);
 }
 
+/**
+ * is_ignored - Check if the character is a valied format
+ * @c: is the characater to check
+ * Return: True if it is not valied otherwise false
+ */
 
 bool is_ignored(char c)
 {
-	return c != 'f' && c != 's' && c != 'e' && c != 'i';
+	return (c != 'f' && c != 's' && c != 'e' && c != 'i');
 }
