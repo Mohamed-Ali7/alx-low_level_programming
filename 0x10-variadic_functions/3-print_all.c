@@ -18,6 +18,10 @@ void print_all(const char * const format, ...)
 	va_start(listPtr, format);
 	while (format[i] != '\0')
 	{
+		if (is_valid(format[i]) && i != 0)
+		{
+			printf(", ");
+		}
 		switch (format[i])
 		{
 			case 'c':
@@ -37,10 +41,6 @@ void print_all(const char * const format, ...)
 				}
 				printf("%s", str);
 				break;
-		}
-		if (format[i + 1] != '\0' && is_valid(format[i + 1]))
-		{
-			printf(", ");
 		}
 		i++;
 	}
