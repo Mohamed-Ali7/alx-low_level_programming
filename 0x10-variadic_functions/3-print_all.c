@@ -17,7 +17,7 @@ void print_all(const char * const format, ...)
 	char *str;
 
 	va_start(listPtr, format);
-	while (format[i] != '\0')
+	while (format != NULL && format[i] != '\0')
 	{
 		if (is_valid(format[i]) && checker != 0)
 		{
