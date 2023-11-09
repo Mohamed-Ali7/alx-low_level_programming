@@ -1,9 +1,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stddef.h>
-#include <stdbool.h>
 
-bool is_valid(char c);
+int is_valid(char c);
 /**
  * print_all - Prints anything.
  * @format: is a list of types of arguments passed to the function
@@ -34,16 +33,10 @@ void print_all(const char * const format, ...)
 				str = va_arg(listPtr, char *);
 				if (str == NULL)
 				{
-					printf("(nil)");
-					break;
+					str = "(nil)";
 				}
 				printf("%s", str);
 				break;
-			default:
-				i++;
-				if (format[i] != '\0' && is_valid(format[i]))
-					printf(", ");
-				continue;
 		}
 		if (format[i + 1] != '\0' && is_valid(format[i + 1]))
 		{
@@ -59,7 +52,7 @@ void print_all(const char * const format, ...)
  * @c: is the character to check
  * Return: True if it is valid or false if it is not
  */
-bool is_valid(char c)
+int is_valid(char c)
 {
 	return (c == 'c' || c == 'i' || c == 'f' || c == 's');
 }
