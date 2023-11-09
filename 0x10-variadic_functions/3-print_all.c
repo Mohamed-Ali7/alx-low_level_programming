@@ -12,13 +12,14 @@ int is_valid(char c);
 void print_all(const char * const format, ...)
 {
 	unsigned int i = 0;
+	int checker = 0;
 	va_list listPtr;
 	char *str;
 
 	va_start(listPtr, format);
 	while (format[i] != '\0')
 	{
-		if (is_valid(format[i]) && i != 0)
+		if (is_valid(format[i]) && checker != 0)
 		{
 			printf(", ");
 		}
@@ -26,12 +27,15 @@ void print_all(const char * const format, ...)
 		{
 			case 'c':
 				printf("%c", va_arg(listPtr, int));
+				checker++;
 				break;
 			case 'i':
 				printf("%d", va_arg(listPtr, int));
+				checker++;
 				break;
 			case 'f':
 				printf("%f", va_arg(listPtr, double));
+				checker++;
 				break;
 			case 's':
 				str = va_arg(listPtr, char *);
@@ -40,6 +44,7 @@ void print_all(const char * const format, ...)
 					str = "(nil)";
 				}
 				printf("%s", str);
+				checker++;
 				break;
 		}
 		i++;
