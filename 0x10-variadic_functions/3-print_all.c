@@ -1,7 +1,9 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <stdbool.h>
 
+bool is_ignored(char c);
 /**
  * print_all - Prints anything.
  * @format: is a list of types of arguments passed to the function
@@ -41,7 +43,7 @@ void print_all(const char * const format, ...)
 				i++;
 				continue;
 		}
-		if (format[i + 1] != '\0')
+		if (format[i + 1] != '\0' && !is_ignored(format[i + 1]))
 		{
 			printf(", ");
 		}
@@ -49,4 +51,10 @@ void print_all(const char * const format, ...)
 	}
 	printf("\n");
 	va_end(listPtr);
+}
+
+
+bool is_ignored(char c)
+{
+	return c != 'f' && c != 's' && c != 'e' && c != 'i';
 }
