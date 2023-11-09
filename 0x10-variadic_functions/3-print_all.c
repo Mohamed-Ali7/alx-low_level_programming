@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-bool is_ignored(char c);
+bool is_valid(char c);
 /**
  * print_all - Prints anything.
  * @format: is a list of types of arguments passed to the function
@@ -41,9 +41,11 @@ void print_all(const char * const format, ...)
 				break;
 			default:
 				i++;
+				if (format[i] != '\0' && is_valid(format[i]))
+					printf(", ");
 				continue;
 		}
-		if (format[i + 1] != '\0' && !is_ignored(format[i + 1]))
+		if (format[i + 1] != '\0' && is_valid(format[i + 1]))
 		{
 			printf(", ");
 		}
@@ -52,14 +54,12 @@ void print_all(const char * const format, ...)
 	printf("\n");
 	va_end(listPtr);
 }
-
 /**
- * is_ignored - Check if the character is a valied format
- * @c: is the characater to check
- * Return: True if it is not valied otherwise false
+ * is_valid - Checks if the character is a valid format
+ * @c: is the character to check
+ * Return: True if it is valid or false if it is not
  */
-
-bool is_ignored(char c)
+bool is_valid(char c)
 {
-	return (c != 'f' && c != 's' && c != 'e' && c != 'i');
+	return (c == 'c' || c == 'i' || c == 'f' || c == 's');
 }
