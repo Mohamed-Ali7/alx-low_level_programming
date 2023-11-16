@@ -1,30 +1,16 @@
-section .data
-	hello db 'Hello, Holberton', 0
-	format db '%s', 0
-	newline db 10, 0
-
 section .text
-	extern printf
-
-	global _start
+global _start
 
 _start:
-	sub rsp, 8
-
-	mov edi, format
-	mov esi, hello
-	xor eax, eax
-
-	call printf
-
-	mov edi, format
-	mov esi, newline
-	xor eax, eax
-
-	call printf
-
-	add rsp, 8
-
-	mov eax, 60
-	xor edi, edi
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, message
+	mov rdx, 16
 	syscall
+
+	mov rax, 60
+	xor rdi, rdi
+	syscall
+
+section .data
+message: db "Hello, Holberton\n", 0
