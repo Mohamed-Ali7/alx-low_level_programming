@@ -44,8 +44,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	}
 	new_node = malloc(sizeof(listint_t));
 	new_node->n = n;
-        new_node->next = cur;
+	new_node->next = cur;
 	prev->next = new_node;
-	printf("Cur is : %d and new node: %d and IDX: %d\n", cur->n, new_node->n, idx);
 	return (*head);
 }
