@@ -28,13 +28,16 @@ size_t free_listint_safe(listint_t **h)
 		i = 0;
 		while (i < size)
 		{
-			if (checker == prev)
+			if (checker == tmp)
 			{
 				*h = NULL;
 				return (size);
 			}
 			i++;
-			checker = checker->next;
+			if (checker != NULL)
+			{
+				checker = checker->next;
+			}
 		}
 		prev = tmp;
 		tmp = tmp->next;
