@@ -31,6 +31,7 @@ size_t free_listint_safe(listint_t **h)
 			if (checker == tmp)
 			{
 				*h = NULL;
+				h = NULL;
 				return (size);
 			}
 			i++;
@@ -39,12 +40,14 @@ size_t free_listint_safe(listint_t **h)
 				checker = checker->next;
 			}
 		}
+
 		prev = tmp;
 		tmp = tmp->next;
 		free(prev);
 		size++;
 	}
 	*h = NULL;
+	h = NULL;
 
 	return (size);
 }
