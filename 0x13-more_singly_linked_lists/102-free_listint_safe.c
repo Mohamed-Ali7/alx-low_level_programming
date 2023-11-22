@@ -12,11 +12,10 @@
 
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *prev;
-	listint_t *checker;
-	listint_t *tmp = *h;
-	size_t i = 0;
 	size_t size = 0;
+	listint_t *tmp = *h;
+	listint_t *prev;
+	int checker;
 
 	if (h == NULL || *h == NULL)
 	{
@@ -24,30 +23,23 @@ size_t free_listint_safe(listint_t **h)
 	}
 	while (tmp != NULL)
 	{
-		checker = *h;
-		i = 0;
-		while (i < size)
+		checker = tmp - tmp->next;
+		if (checker > 0)
 		{
-			if (checker == tmp)
-			{
-				*h = NULL;
-				h = NULL;
-				return (size);
-			}
-			i++;
-			if (checker != NULL)
-			{
-				checker = checker->next;
-			}
+			prev = tmp;
+			tmp = tmp->next;
+			free(prev);
+			size++;
 		}
-
-		prev = tmp;
-		tmp = tmp->next;
-		free(prev);
-		size++;
+		else
+		{
+			free(tmp);
+			*h = NULL;
+			size++;
+			break;
+		}
 	}
-	*h = NULL;
-	h = NULL;
 
+	*h = NULL;
 	return (size);
 }
