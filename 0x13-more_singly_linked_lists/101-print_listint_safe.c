@@ -15,10 +15,6 @@ size_t print_listint_safe(const listint_t *head)
 	const listint_t *checker;
 	size_t i = 0;
 
-	if  (head == NULL)
-	{
-		exit(98);
-	}
 	while (tmp != NULL)
 	{
 		checker = head;
