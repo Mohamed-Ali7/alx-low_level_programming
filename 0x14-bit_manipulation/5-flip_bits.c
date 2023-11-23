@@ -44,23 +44,29 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 
 	while (n_tmp != 0 || m_tmp != 0)
 	{
-		n_index = get_bit(n, i);
-		m_index = get_bit(m, i);
-
-		if (n_tmp == 0)
+		if (n_tmp != 0)
+		{
+			n_index = get_bit(n, i);
+			n_tmp = n_tmp >> 1;
+		}
+		else
 		{
 			n_index = 0;
 		}
-		if (m_tmp == 0)
+		if (m_tmp != 0)
+		{
+			m_index = get_bit(m, i);
+			m_tmp = m_tmp >> 1;
+		}
+		else
 		{
 			m_index = 0;
 		}
+
 		if (n_index != m_index)
 		{
 			flips++;
 		}
-		n_tmp = n_tmp >> 1;
-		m_tmp = m_tmp >> 1;
 		i++;
 	}
 	return (flips);
