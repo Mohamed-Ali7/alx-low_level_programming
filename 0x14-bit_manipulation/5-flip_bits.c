@@ -9,12 +9,8 @@
 int get_bit(unsigned long int n, unsigned int index)
 {
 	unsigned long x = 0;
-	unsigned int i;
 
-	for (i = 0; i <= index; i++)
-	{
-		x = 1 << i;
-	}
+	x = (unsigned long) 1 << index;
 
 	if ((n & x) != 0)
 	{
@@ -44,29 +40,14 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 
 	while (n_tmp != 0 || m_tmp != 0)
 	{
-		if (n_tmp != 0)
-		{
-			n_index = get_bit(n, i);
-			n_tmp = n_tmp >> 1;
-		}
-		else
-		{
-			n_index = 0;
-		}
-		if (m_tmp != 0)
-		{
-			m_index = get_bit(m, i);
-			m_tmp = m_tmp >> 1;
-		}
-		else
-		{
-			m_index = 0;
-		}
-
+		n_index = get_bit(n, i);
+		m_index = get_bit(m, i);
 		if (n_index != m_index)
 		{
 			flips++;
 		}
+		n_tmp = n_tmp >> 1;
+		m_tmp = m_tmp >> 1;
 		i++;
 	}
 	return (flips);

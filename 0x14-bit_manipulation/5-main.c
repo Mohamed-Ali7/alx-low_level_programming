@@ -18,6 +18,14 @@ int main(void)
     printf("%u\n", n);
     n = flip_bits(1024, 1025);
     printf("%u\n", n);
+    n = flip_bits(0, 0);
+    printf("%u\n", n);
+    n = flip_bits(1, 0);
+    printf("%u\n", n);
+    n = flip_bits(0, 1);
+    printf("%u\n", n);
+    n = flip_bits(18446744073709551, 0);
+    printf("%u\n", n);
     return (0);
 }
 
