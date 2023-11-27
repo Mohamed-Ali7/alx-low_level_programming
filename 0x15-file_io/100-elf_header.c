@@ -119,10 +119,11 @@ void print_entry_point(const uint8_t buffer[]) {
 
 void analyze_elf_file(const char *filename) {
     int fd = open(filename, O_RDONLY);
+    uint8_t elf_header[64];
+
     if (fd == -1)
         print_error("Error opening file");
 
-    uint8_t elf_header[64];  // Maximum ELF header size is 64 bytes
     read_elf_header(fd, elf_header, sizeof(elf_header));
 
     print_magic(elf_header);
