@@ -27,7 +27,7 @@ int main(void)
     insert_dnodeint_at_index(&head, 0, 4096);
     insert_dnodeint_at_index(&head, 1, 4455);
     insert_dnodeint_at_index(&head, 9, 4096);
-    insert_dnodeint_at_index(&head, 13, 4096);
+    insert_dnodeint_at_index(&head, 12, 4096);
     print_dlistint(head);
     free_dlistint(head);
     head = NULL;
