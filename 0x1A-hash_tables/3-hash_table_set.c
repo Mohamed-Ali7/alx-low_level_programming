@@ -20,7 +20,18 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	new_element->key = strdup(key);
+	if (new_element->key == NULL)
+	{
+		free(new_element);
+		return (0);
+	}
 	new_element->value = strdup(value);
+	if (new_element->value == NULL)
+	{
+		free(new_element);
+		free(new_element->key);
+		return (0);
+	}
 
 	if (ht->array[index] == NULL)
 	{
