@@ -17,7 +17,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *temp;
 	int index;
 
-	if (new_element == NULL || key == NULL || *key == '\0')
+	if (new_element == NULL || key == NULL || *key == '\0' || value == NULL)
 		return (0);
 	index = hash_djb2((const unsigned char *) key) % ht->size;
 	new_element->key = strdup(key);
