@@ -42,9 +42,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		temp = ht->array[index];
 		while (temp != NULL)
 		{
-			if (temp->key == key)
+			if (temp->key == new_element->key)
 			{
-				temp->value = value;
+				temp->value = new_element->value;
 				return (0);
 			}
 			temp = temp->next;
