@@ -14,11 +14,11 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	hash_node_t *new_element = malloc(sizeof(hash_node_t));
+	hash_node_t *temp;
 	int index = hash_djb2((const unsigned char *) key) % ht->size;
 
 	if (new_element == NULL)
 		return (0);
-
 	new_element->key = strdup(key);
 	if (new_element->key == NULL)
 	{
@@ -32,7 +32,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		free(new_element->key);
 		return (0);
 	}
-
 	if (ht->array[index] == NULL)
 	{
 		new_element->next = NULL;
@@ -40,9 +39,18 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 	else
 	{
+		temp = ht->array[index];
+		while (temp != NULL)
+		{
+			if (temp->key == key)
+			{
+				temp->value = value;
+				return (0);
+			}
+			temp = temp->next;
+		}
 		new_element->next = ht->array[index];
 		ht->array[index] = new_element;
 	}
-
 	return (1);
 }
