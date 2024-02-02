@@ -27,9 +27,7 @@ void hash_table_delete(hash_table_t *ht)
 		while (next != NULL)
 		{
 			cur = next;
-			printf("HEEEEEEEEEEERE: %s\n", cur->value);
 			next = next->next;
-			printf("HEEEEEEEEEEERE: %s\n", cur->value);
 			free(cur->key);
 			free(cur->value);
 			free(cur);
