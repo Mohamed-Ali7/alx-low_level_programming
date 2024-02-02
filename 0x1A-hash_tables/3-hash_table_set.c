@@ -17,21 +17,16 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *temp;
 	int index;
 
-	if (new_element == NULL || key == NULL || *key == '\0')
+	if (new_element == NULL)
 		return (0);
-	index = hash_djb2((const unsigned char *) key) % ht->size;
-	new_element->key = strdup(key);
-	if (new_element->key == NULL)
+	if (key == NULL || *key == '\0')
 	{
 		free(new_element);
 		return (0);
 	}
+	index = hash_djb2((const unsigned char *) key) % ht->size;
+	new_element->key = strdup(key);
 	new_element->value = strdup(value);
-	if (new_element->value == NULL)
-	{
-		free(new_element), free(new_element->key);
-		return (0);
-	}
 	if (ht->array[index] == NULL)
 	{
 		new_element->next = NULL;
