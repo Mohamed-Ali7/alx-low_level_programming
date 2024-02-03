@@ -12,24 +12,27 @@
 */
 shash_table_t *shash_table_create(unsigned long int size)
 {
-	shash_table_t *table;
+	unsigned long int i;
+	shash_table_t *stable = malloc(sizeof(shash_table_t));
 
-	if (size == 0)
+	if (stable == NULL)
 		return (NULL);
 
-	table = calloc(1, sizeof(shash_table_t));
-	if (table == NULL)
-		return (NULL);
+	stable->array = malloc(sizeof(shash_node_t *) * size);
+	stable->shead = NULL;
+	stable->stail = NULL;
 
-	table->size = size;
-	table->array = calloc(size, sizeof(shash_node_t *));
-	if (table->array == NULL)
+	if (stable->array == NULL)
 	{
-		free(table);
+		free(stable);
 		return (NULL);
 	}
-	return (table);
+	stable->size = size;
 
+	for (i = 0; i < size; i++)
+		stable->array[i] = NULL;
+
+	return (stable);
 }
 
 /**
@@ -129,24 +132,18 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
-	unsigned long int index;
-	shash_node_t *node;
+	unsigned long int index = 0;
+	shash_node_t  *bucket;
 
-	if (ht == NULL)
+	if (!ht || !key || !*key)
 		return (NULL);
-	if (key == NULL)
-		return (NULL);
-	index = key_index((unsigned char *)key, ht->size);
-	if (ht->array[index] == NULL)
-		return (NULL);
-	if (strcmp(ht->array[index]->key, key) == 0)
-		return (ht->array[index]->value);
-	node = ht->array[index];
-	while (node != NULL)
+	index = key_index((const unsigned char *)key, ht->size);
+	bucket = ht->array[index];
+	while (bucket)
 	{
-		if (strcmp(node->key, key) == 0)
-			return (node->value);
-		node = node->next;
+		if (!strcmp(key, bucket->key))
+			return (bucket->value);
+		bucket = bucket->next;
 	}
 	return (NULL);
 }
