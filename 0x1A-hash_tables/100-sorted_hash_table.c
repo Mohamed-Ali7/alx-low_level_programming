@@ -146,6 +146,7 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 		bucket = bucket->next;
 	}
 	return (NULL);
+
 }
 /**
  * shash_table_print - Prints a sorted hash table.
@@ -155,19 +156,20 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 
 void shash_table_print(const shash_table_t *ht)
 {
-	unsigned long int count = 0;
-	shash_node_t *node = ht->shead;
+	shash_node_t *bucket;
+	int not_fin = 0;
 
-	if (ht == NULL)
+	if (!ht)
 		return;
+	bucket = ht->shead;
 	printf("{");
-	while (node != NULL)
+	while (bucket)
 	{
-		if (count > 0)
+		if (not_fin)
 			printf(", ");
-		printf("'%s': '%s'", node->key, node->value);
-		node = node->snext;
-		count++;
+		printf("'%s': '%s'", bucket->key, bucket->value);
+		not_fin = 1;
+		bucket = bucket->snext;
 	}
 	printf("}\n");
 }
