@@ -47,6 +47,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index = hash_djb2((const unsigned char *) key) % ht->size;
 	shash_node_t *current;
+	shash_node_t *prev;
 	shash_node_t *node = ht->array[index];
 	shash_node_t *new_node;
 
@@ -63,18 +64,37 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	new_node = malloc(sizeof(shash_node_t));
 	if (new_node == NULL)
-	{
-		fprintf(stderr, "Failed to allocate memory for new node\n");
 		return (0);
-	}
 
 	new_node->key = strdup(key);
 	new_node->value = strdup(value);
-	new_node->next = ht->array[index];
+	new_node->next = NULL;
 	new_node->sprev = NULL;
 	new_node->snext = NULL;
 
-	ht->array[index] = new_node;
+	if (ht->array[index] == NULL)
+		ht->array[index] = new_node;
+	else
+	{
+		current = ht->array[index];
+		prev = NULL;
+		while (current != NULL && strcmp(current->key, key) < 0)
+		{
+			prev = current;
+			current = current->next;
+		}
+
+		if (prev == NULL)
+		{
+			new_node->next = current;
+			ht->array[index] = new_node;
+		}
+		else
+		{
+			new_node->next = current;
+			prev->next = new_node;
+		}
+	}
 	if (ht->shead == NULL)
 	{
 		ht->shead = new_node;
@@ -87,6 +107,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		{
 			current = current->snext;
 		}
+
 		if (current == NULL)
 		{
 			new_node->sprev = ht->stail;
