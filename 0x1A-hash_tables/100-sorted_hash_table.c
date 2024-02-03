@@ -156,20 +156,20 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 
 void shash_table_print(const shash_table_t *ht)
 {
-	shash_node_t *bucket;
-	int not_fin = 0;
+	shash_node_t *stemp;
+	int is_first = 1;
 
-	if (!ht)
+	if (ht == NULL)
 		return;
-	bucket = ht->shead;
+	stemp = ht->shead;
 	printf("{");
-	while (bucket)
+	while (stemp != NULL)
 	{
-		if (not_fin)
+		if (!is_first)
 			printf(", ");
-		printf("'%s': '%s'", bucket->key, bucket->value);
-		not_fin = 1;
-		bucket = bucket->snext;
+		printf("'%s': '%s'", stemp->key, stemp->value);
+		is_first = 0;
+		stemp = stemp->snext;
 	}
 	printf("}\n");
 }
@@ -181,20 +181,20 @@ void shash_table_print(const shash_table_t *ht)
 */
 void shash_table_print_rev(const shash_table_t *ht)
 {
-	shash_node_t *bucket;
-	int not_fin = 0;
+	shash_node_t *stemp;
+	int is_first = 1;
 
-	if (!ht)
+	if (ht == NULL)
 		return;
-	bucket = ht->stail;
+	stemp = ht->stail;
 	printf("{");
-	while (bucket)
+	while (stemp != NULL)
 	{
-		if (not_fin)
+		if (!is_first)
 			printf(", ");
-		printf("'%s': '%s'", bucket->key, bucket->value);
-		not_fin = 1;
-		bucket = bucket->sprev;
+		printf("'%s': '%s'", stemp->key, stemp->value);
+		is_first = 0;
+		stemp = stemp->sprev;
 	}
 	printf("}\n");
 }
