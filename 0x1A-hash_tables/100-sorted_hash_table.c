@@ -12,27 +12,24 @@
 */
 shash_table_t *shash_table_create(unsigned long int size)
 {
-	unsigned long int i;
-	shash_table_t *stable = malloc(sizeof(shash_table_t));
+	shash_table_t *table;
 
-	if (stable == NULL)
+	if (size == 0)
 		return (NULL);
 
-	stable->array = malloc(sizeof(shash_node_t *) * size);
-	stable->shead = NULL;
-	stable->stail = NULL;
+	table = calloc(1, sizeof(shash_table_t));
+	if (table == NULL)
+		return (NULL);
 
-	if (stable->array == NULL)
+	table->size = size;
+	table->array = calloc(size, sizeof(shash_node_t *));
+	if (table->array == NULL)
 	{
-		free(stable);
+		free(table);
 		return (NULL);
 	}
-	stable->size = size;
+	return (table);
 
-	for (i = 0; i < size; i++)
-		stable->array[i] = NULL;
-
-	return (stable);
 }
 
 /**
