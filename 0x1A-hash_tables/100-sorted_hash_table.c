@@ -131,21 +131,22 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
-	unsigned long int index = 0;
-	shash_node_t  *bucket;
+	int index;
+	hash_node_t *temp;
 
-	if (!ht || !key || !*key)
+	if (ht == NULL || key == NULL)
 		return (NULL);
-	index = key_index((const unsigned char *)key, ht->size);
-	bucket = ht->array[index];
-	while (bucket)
+
+	index = hash_djb2((const unsigned char *) key) % ht->size;
+	temp = ht->array[index];
+
+	while (temp != NULL)
 	{
-		if (!strcmp(key, bucket->key))
-			return (bucket->value);
-		bucket = bucket->next;
+		if (strcmp(temp->key, key) == 0)
+			return (temp->value);
+		temp = temp->next;
 	}
 	return (NULL);
-
 }
 /**
  * shash_table_print - Prints a sorted hash table.
