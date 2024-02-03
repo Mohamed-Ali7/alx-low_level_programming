@@ -181,19 +181,20 @@ void shash_table_print(const shash_table_t *ht)
 */
 void shash_table_print_rev(const shash_table_t *ht)
 {
-	unsigned long int count = 0;
-	shash_node_t *node = ht->stail;
+	shash_node_t *bucket;
+	int not_fin = 0;
 
-	if (ht == NULL)
+	if (!ht)
 		return;
+	bucket = ht->stail;
 	printf("{");
-	while (node != NULL)
+	while (bucket)
 	{
-		if (count > 0)
+		if (not_fin)
 			printf(", ");
-		printf("'%s': '%s'", node->key, node->value);
-		node = node->sprev;
-		count++;
+		printf("'%s': '%s'", bucket->key, bucket->value);
+		not_fin = 1;
+		bucket = bucket->sprev;
 	}
 	printf("}\n");
 }
