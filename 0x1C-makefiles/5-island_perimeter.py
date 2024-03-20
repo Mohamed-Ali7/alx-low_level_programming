@@ -21,7 +21,8 @@ def island_perimeter(grid):
                 if col == 0 or grid[row][col - 1] == 0 or col + 1 == columns\
                         or grid[row][col + 1] == 0:
                     rectangle_width += 1
-                elif row + 1 == rows or grid[row + 1][col] == 0:
+                elif row + 1 == rows or grid[row + 1][col] == 0\
+                        or row == 0 or grid[row - 1][col] == 0:
                     rectangle_width += 1
                 else:
                     continue
