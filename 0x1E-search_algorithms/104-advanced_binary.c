@@ -40,7 +40,7 @@ int binary_recursive(int *array, size_t start, size_t end, int value)
 			return (binary_recursive(array, start, middle, value));
 	}
 	else if (array[middle] > value)
-		return (binary_recursive(array, start, middle - 1, value));
+		return (binary_recursive(array, start, middle, value));
 	else
 		return (binary_recursive(array, middle + 1, end, value));
 }
