@@ -31,30 +31,27 @@ skiplist_t *get_element_by_index(skiplist_t *list, size_t index)
 /**
  * search_block - Searches for a value in a part of a list of integers
  * @list: Is a pointer to the head of the list to search in
- * @start: Is the index to start searching from
  * @end: Is the index to stop searching at
  * @value: Is the value to search for
  * Return: The first index where value is located
  */
 
-skiplist_t *search_block(skiplist_t *list, size_t start, size_t end, int value)
+skiplist_t *search_block(skiplist_t *list, size_t end, int value)
 {
-	skiplist_t *result = NULL, *block_first_node;
+	skiplist_t *result = NULL;
 
-	block_first_node = get_element_by_index(list, start);
-
-	printf("Value found between indexes [%ld] and [%ld]\n", start, end);
-	while (block_first_node)
+	printf("Value found between indexes [%ld] and [%ld]\n", list->index, end);
+	while (list)
 	{
 		printf("Value checked at index [%ld] = [%d]\n",
-						block_first_node->index, block_first_node->n);
+						list->index, list->n);
 
-		if (block_first_node->n == value)
+		if (list->n == value)
 		{
-			result = block_first_node;
+			result = list;
 			break;
 		}
-		block_first_node = block_first_node->next;
+		list = list->next;
 	}
 	return (result);
 }
@@ -80,7 +77,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		printf("Value checked at index [%ld] = [%d]\n", express->index, express->n);
 		if (express->n >= value)
 		{
-			result = search_block(list, cur->index, express->index, value);
+			result = search_block(cur, express->index, value);
 			break;
 		}
 		cur = express;
@@ -91,7 +88,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		lsit_last_node = cur;
 		while (lsit_last_node->next)
 			lsit_last_node = lsit_last_node->next;
-		result = search_block(list, cur->index, lsit_last_node->index, value);
+		result = search_block(cur, lsit_last_node->index, value);
 	}
 	return (result);
 }
