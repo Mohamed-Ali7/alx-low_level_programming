@@ -68,12 +68,12 @@ skiplist_t *search_block(skiplist_t *list, size_t start, size_t end, int value)
 
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-	skiplist_t *result = NULL, *express = list->express;
-	skiplist_t *cur = list, *lsit_last_node;
+	skiplist_t *result = NULL, *express, *cur = list, *lsit_last_node;
 
 	if (!list)
 		return (result);
 
+	express = cur->express;
 	while (express)
 	{
 		express = cur->express;
