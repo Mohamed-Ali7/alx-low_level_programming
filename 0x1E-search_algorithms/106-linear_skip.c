@@ -70,7 +70,6 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *result = NULL, *express, *cur = list, *lsit_last_node;
 
-	(void) (value);
 	if (!list)
 		return (result);
 
