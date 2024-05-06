@@ -31,30 +31,26 @@ listint_t *get_element_by_index(listint_t *list, size_t index)
 /**
  * search_block - Searches for a value in a part of a list of integers
  * @list: Is a pointer to the head of the list to search in
- * @start: Is the index to start searching from
  * @end: Is the index to stop searching at
  * @value: Is the value to search for
  * Return: The first index where value is located
  */
 
-listint_t *search_block(listint_t *list, size_t start, size_t end, int value)
+listint_t *search_block(listint_t *list, size_t end, int value)
 {
-	listint_t *result = NULL, *block_first_node;
+	listint_t *result = NULL;
 
-	block_first_node = get_element_by_index(list, start);
-
-	printf("Value found between indexes [%ld] and [%ld]\n", start, end);
-	while (block_first_node)
+	printf("Value found between indexes [%ld] and [%ld]\n", list->index, end);
+	while (list)
 	{
-		printf("Value checked at index [%ld] = [%d]\n",
-						block_first_node->index, block_first_node->n);
+		printf("Value checked at index [%ld] = [%d]\n", list->index, list->n);
 
-		if (block_first_node->n == value)
+		if (list->n == value)
 		{
-			result = block_first_node;
+			result = list;
 			break;
 		}
-		block_first_node = block_first_node->next;
+		list = list->next;
 	}
 	return (result);
 }
@@ -71,7 +67,7 @@ listint_t *search_block(listint_t *list, size_t start, size_t end, int value)
 
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	listint_t *result = NULL, *cur;
+	listint_t *result = NULL, *prev, *cur = list;
 	size_t jump_step = sqrt(size), block_start = 0, block_end = jump_step;
 	size_t block_last_index = 0;
 
@@ -81,19 +77,20 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	for (block_start = 0; block_start < size; block_start += jump_step)
 	{
 		block_last_index = block_end < size ? block_end : size - 1;
-		cur = get_element_by_index(list, block_last_index);
+		prev = cur;
+		cur = get_element_by_index(prev, block_last_index);
 		printf("Value checked at index [%ld] = [%d]\n", cur->index, cur->n);
 		if (block_end < size)
 		{
 			if (cur->n >= value)
 			{
-				result = search_block(list, block_start, block_last_index, value);
+				result = search_block(prev, block_last_index, value);
 				break;
 			}
 		}
 		else
 		{
-			result = search_block(list, block_start, block_last_index, value);
+			result = search_block(prev, block_last_index, value);
 			break;
 		}
 		block_end += jump_step;
